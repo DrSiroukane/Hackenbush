@@ -1,0 +1,13 @@
+.container{
+    -fx-background-color: #666;
+}
+
+.node-style {
+    -fx-fill: white;
+    -fx-stroke: black;
+}
+
+.line-style {
+    -fx-fill: blue;
+    -fx-stroke-width: 10px;
+}
