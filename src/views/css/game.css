@@ -14,7 +14,7 @@
 /*
     buttons icon
 */
-#nodeButton, #edgeButton, #selectButton, #cutButton, #copyButton, #pasteButton,
+#nodeButton, #edgeButton, #controlButton, #selectButton, #cutButton, #copyButton, #pasteButton,
 #duplicateButton, #saveButton, #deleteButton, #undoButton, #redoButton, #moveButton {
     -fx-min-width: 24px;
     -fx-min-height: 24px;
@@ -30,6 +30,10 @@
 
 #edgeButton {
     -fx-background-image: url('../img/icons/015-line.png');
+}
+
+#controlButton {
+    -fx-background-image: url('../img/icons/023-line-2.png');
 }
 
 #selectButton {

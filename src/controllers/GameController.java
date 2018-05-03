@@ -1,24 +1,15 @@
 package controllers;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.*;
 import javafx.scene.shape.*;
-import models.Edge;
-import models.Node;
+import models.*;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class GameController implements Initializable {
 
@@ -28,6 +19,7 @@ public class GameController implements Initializable {
 
     public Button nodeButton;
     public Button edgeButton;
+    public Button controlButton;
     public Button selectButton;
     public Button cutButton;
     public Button copyButton;
@@ -38,7 +30,7 @@ public class GameController implements Initializable {
     public Button undoButton;
     public Button redoButton;
     public Button moveButton;
-    
+
     public ListView listDesigns;
 
     public Pane drawPanel;
@@ -56,30 +48,32 @@ public class GameController implements Initializable {
 
     public final int NODE = 0;
     public final int EDGE = 1;
-    public final int SELECT = 2;
-    public final int CUT = 3;
-    public final int COPY = 4;
-    public final int PASTE = 5;
-    public final int DUPLICATE = 6;
-    public final int SAVE = 7;
-    public final int DELETE = 8;
-    public final int UNDO = 9;
-    public final int REDO = 10;
-    public final int MOVE = 11;
+    public final int CONTROL = 2;
+    public final int SELECT = 3;
+    public final int CUT = 4;
+    public final int COPY = 5;
+    public final int PASTE = 6;
+    public final int DUPLICATE = 7;
+    public final int SAVE = 8;
+    public final int DELETE = 9;
+    public final int UNDO = 10;
+    public final int REDO = 11;
+    public final int MOVE = 12;
 
     public boolean[] oldButtonsDisabledProperty = {
-            false, // node Button disabled proprity
-            false, // edge Button disabled proprity
-            false, // select Button disabled proprity
-            true, // cut Button disabled proprity
-            true, // copy Button disabled proprity
-            true, // paste Button disabled proprity
-            true, // duplicate Button disabled proprity
-            true, // save Button disabled proprity
-            false, // delete Button disabled proprity
-            true, // undo Button disabled proprity
-            true,  // redo Button disabled proprity
-            false // move Button disabled propority
+            false, // node Button disabled propriety
+            false, // edge Button disabled propriety
+            false, // control Button disabled propriety
+            false, // select Button disabled propriety
+            true, // cut Button disabled propriety
+            true, // copy Button disabled propriety
+            true, // paste Button disabled propriety
+            true, // duplicate Button disabled propriety
+            true, // save Button disabled propriety
+            false, // delete Button disabled propriety
+            true, // undo Button disabled propriety
+            true,  // redo Button disabled propriety
+            false // move Button disabled propriety
     };
 
     public List<Button> buttons;
@@ -90,7 +84,12 @@ public class GameController implements Initializable {
     public volatile List<Node> edgeNodes;
 
     double pressedX, pressedY;
-    double draggedX, draggedY;
+    double pressedNode1X, pressedNode1Y,
+            pressedNode2X, pressedNode2Y,
+            pressedNode3X, pressedNode3Y,
+            pressedNode4X, pressedNode4Y;
+
+    public volatile List<Shape> edgeControlTrash;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -98,18 +97,12 @@ public class GameController implements Initializable {
             System.out.println(modeChoiceBox.getItems().get(newVal.intValue()));
             setMode();
         });
-
-        drawPanel.setOnMouseClicked(mouseEvent -> {
-            double x = mouseEvent.getX();
-            double y = mouseEvent.getY();
-
-            setPaneCurrentAction(x,y);
-        });
-
+        drawPanel.setOnMouseClicked(this::onMouseClicked);
         buttons = new ArrayList<>(
                 Arrays.asList(
                         nodeButton,
                         edgeButton,
+                        controlButton,
                         selectButton,
                         cutButton,
                         copyButton,
@@ -126,26 +119,40 @@ public class GameController implements Initializable {
         nodes = new ArrayList<>();
         edges = new ArrayList<>();
         edgeNodes = new ArrayList<>();
+        edgeControlTrash = new ArrayList<>();
 
         setMode();
         currentAction = -1;
+    }
 
-//        createPath();
+    private void checkReset() {
+        System.out.println("checkReset");
+        for (Shape shape : edgeControlTrash) {
+            drawPanel.getChildren().remove(shape);
+        }
+        edgeControlTrash.clear();
+    }
+
+    private void removeEdge(Edge edge) {
+        drawPanel.getChildren().remove(edge);
+        edges.remove(edge);
+        edge.startNode.getEdges().remove(edge);
+        edge.endNode.getEdges().remove(edge);
     }
 
     /**
      * Method to update current mode depend on selected one
      */
-    public void setMode(){
+    public void setMode() {
         currentMode = modeChoiceBox.getSelectionModel().getSelectedIndex();
         System.out.println(currentMode);
 
-        if(currentMode == 0){
-            for(int i=0; i<buttons.size(); i++){
+        if (currentMode == 0) {
+            for (int i = 0; i < buttons.size(); i++) {
                 buttons.get(i).setDisable(oldButtonsDisabledProperty[i]);
             }
-        }else{
-            for(int i=0; i<buttons.size(); i++){
+        } else {
+            for (int i = 0; i < buttons.size(); i++) {
                 buttons.get(i).setDisable(true);
             }
         }
@@ -157,12 +164,12 @@ public class GameController implements Initializable {
      * @param x
      * @param y
      */
-    public void setPaneCurrentAction(double x, double y){
-        switch(currentAction) {
+    public void setPaneCurrentAction(double x, double y) {
+        switch (currentAction) {
             case NODE:
                 // TODO  node action
 
-                addNode(x,y);
+                addNode(x, y);
 
                 break;
             case EDGE:
@@ -170,6 +177,10 @@ public class GameController implements Initializable {
 
 //                Path path = createPath();
 //                drawPanel.getChildren().add(path);
+                break;
+            case CONTROL:
+                // TODO  control action
+
                 break;
             case SELECT:
                 // TODO  select action
@@ -217,206 +228,174 @@ public class GameController implements Initializable {
         }
     }
 
-    public void addNode(double x, double y){
+    public void addNode(double x, double y) {
         Node node = new Node(x, y);
-
-        node.getStyleClass().add("node-style");
-
-        node.setOnMouseClicked(mouseEvent -> {
-            if(currentAction == EDGE){
-                System.out.println(edgeNodes.size());
-
-                if(edgeNodes.size() > 1){
-                    edgeNodes.clear();
-                }
-
-                System.out.println(edgeNodes.size());
-
-                Node clickedNode = (Node) mouseEvent.getSource();
-
-                edgeNodes.add(clickedNode);
-
-                if(edgeNodes.size() == 2){
-                    Edge edge = new Edge(edgeNodes.get(0), edgeNodes.get(1));
-                    edge.setOnMouseClicked(mouseEdgeEvent -> {
-                        if(currentAction == EDGE){
-                            Edge currentEdge = (Edge) mouseEdgeEvent.getSource();
-                            addNode(currentEdge);
-                        }
-                    });
-
-                    edges.add(edge);
-                    drawPanel.getChildren().add(edge);
-                    edge.toBack();
-                }
-            }
-        });
-
-        node.setOnMousePressed(mouseEvent -> {
-            if(currentAction == MOVE){
-                Node currentNode = (Node) mouseEvent.getSource();
-                pressedX = mouseEvent.getX();
-                pressedY = mouseEvent.getY();
-                draggedX = currentNode.getCenterX();
-                draggedY = currentNode.getCenterY();
-            }
-        });
-
-        node.setOnMouseDragged(mouseEvent -> {
-            if(currentAction == MOVE) {
-                Node currentNode = (Node) mouseEvent.getSource();
-                currentNode.setCenterX(draggedX - pressedX + mouseEvent.getX());
-                currentNode.setCenterY(draggedY - pressedY + mouseEvent.getY());
-
-            }
-        });
+        node.setOnMouseClicked(this::onMouseClicked);
+        node.setOnMousePressed(this::onMousePressed);
+        node.setOnMouseDragged(this::onMouseDragged);
 
         nodes.add(node);
-
         drawPanel.getChildren().add(node);
-
         node.toFront();
     }
 
-    public void addNode(Edge edge){
-        edge.control1.getStyleClass().add("node-tangent");
-        edge.control1.setOnMousePressed(mouseEvent -> {
-            if(currentAction == EDGE){
-                Node currentNode = (Node) mouseEvent.getSource();
-                pressedX = mouseEvent.getX();
-                pressedY = mouseEvent.getY();
-                draggedX = currentNode.getCenterX();
-                draggedY = currentNode.getCenterY();
-            }
-        });
-        edge.control1.setOnMouseDragged(mouseEvent -> {
-            if(currentAction == EDGE) {
-                Node currentNode = (Node) mouseEvent.getSource();
-                currentNode.setCenterX(draggedX - pressedX + mouseEvent.getX());
-                currentNode.setCenterY(draggedY - pressedY + mouseEvent.getY());
+    public void addControlToEdge(Edge edge) {
+        System.out.println("addControlToEdge");
+        if (edgeControlTrash.size() != 0) {
+            checkReset();
+        }
 
-            }
-        });
-
-        edge.control2.getStyleClass().add("node-tangent");
-        edge.control2.setOnMousePressed(mouseEvent -> {
-            if(currentAction == EDGE){
-                Node currentNode = (Node) mouseEvent.getSource();
-                pressedX = mouseEvent.getX();
-                pressedY = mouseEvent.getY();
-                draggedX = currentNode.getCenterX();
-                draggedY = currentNode.getCenterY();
-            }
-        });
-        edge.control2.setOnMouseDragged(mouseEvent -> {
-            if(currentAction == EDGE) {
-                Node currentNode = (Node) mouseEvent.getSource();
-                currentNode.setCenterX(draggedX - pressedX + mouseEvent.getX());
-                currentNode.setCenterY(draggedY - pressedY + mouseEvent.getY());
-
-            }
-        });
-
+        /**
+         * Prepare control 1
+         */
+        edge.control1.setOnMousePressed(this::onMousePressed);
+        edge.control1.setOnMouseDragged(this::onMouseDragged);
         Line startLine = new Line(
                 edge.startNode.getCenterX(),
                 edge.startNode.getCenterY(),
                 edge.control1.getCenterX(),
                 edge.control1.getCenterY()
         );
-
         startLine.startXProperty().bind(edge.startNode.centerXProperty());
         startLine.startYProperty().bind(edge.startNode.centerYProperty());
         startLine.endXProperty().bind(edge.control1.centerXProperty());
         startLine.endYProperty().bind(edge.control1.centerYProperty());
 
+        /**
+         * Prepare control 2
+         */
+        edge.control2.setOnMousePressed(this::onMousePressed);
+        edge.control2.setOnMouseDragged(this::onMouseDragged);
         Line endLine = new Line(
                 edge.endNode.getCenterX(),
                 edge.endNode.getCenterY(),
                 edge.control2.getCenterX(),
                 edge.control2.getCenterY()
         );
-
         endLine.startXProperty().bind(edge.endNode.centerXProperty());
         endLine.startYProperty().bind(edge.endNode.centerYProperty());
         endLine.endXProperty().bind(edge.control2.centerXProperty());
         endLine.endYProperty().bind(edge.control2.centerYProperty());
 
-        drawPanel.getChildren().addAll(edge.control1, edge.control2, startLine, endLine);
+        edgeControlTrash.add(edge.control1);
+        edgeControlTrash.add(edge.control2);
+        edgeControlTrash.add(startLine);
+        edgeControlTrash.add(endLine);
+
+        drawPanel.getChildren().addAll(edgeControlTrash);
 
         edge.control1.toFront();
         edge.control2.toFront();
     }
 
-    private Path createPath() {
-
-        double startX = 30;
-        double startY = 20;
-
-        double controlX1 = 30;
-        double controlY1 = 260;
-
-        double controlX2 = 300;
-        double controlY2 = 20;
-
-        double endX = 200;
-        double endY = 200;
-
-
-       /* double controlX12 = 26;
-        double controlY12 = 31;
-        double controlX22 = 92;
-        double controlY22 = 92;
-        double endX2 = 250;
-        double endY2 = 150;*/
-
-
-        Node node1 = new Node(startX,startY);
-        Node node2 = new Node(controlX1,controlY1);
-        Node node3 = new Node(controlX2,controlY2);
-        Node node4 = new Node(endX, endY);
-
-//        Edge edge1 = new Edge(node1, node2);
-        Edge edge2 = new Edge(node1, node4);
-
-
-        /*Node node12 = new Node(endX,endY);
-        Node node22 = new Node(controlX12,controlY12);
-        Node node32 = new Node(controlX12,controlY12);
-        Node node42 = new Node(endX2, endY2);*/
-
-        /*Edge edge12 = new Edge(node12, node22);
-        Edge edge22 = new Edge(node42, node32);*/
-
-        drawPanel.getChildren().addAll(
-                node1,
-//                node2,
-//                node3,
-                node4,
-                edge2.control1,
-                edge2.control2,
-//                edge1,
-                edge2
-        );
-
-        Path path = new Path();
-        /*path.setStroke(Color.RED);
-        path.setStrokeWidth(10);
-        path.getElements().addAll(
-                new MoveTo(startX, startY),
-                new CubicCurveTo(controlX1, controlY1, controlX2, controlY2, endX, endY)
-        );
-        drawPanel.getChildren().add(path);*/
-
-        return path;
+    public void onMouseClicked(MouseEvent mouseEvent) {
+        if (mouseEvent.getSource() instanceof Pane) { // Pane get clicked
+            System.out.println("onMouseClicked Pane");
+            double x = mouseEvent.getX();
+            double y = mouseEvent.getY();
+            setPaneCurrentAction(x, y);
+        } else if (mouseEvent.getSource() instanceof Node) { // Node get clicked
+            System.out.println("onMouseClicked Node");
+            Node currentNode = (Node) mouseEvent.getSource();
+            if (currentAction == EDGE) {
+                if (edgeNodes.size() > 1) {
+                    edgeNodes.clear();
+                }
+                edgeNodes.add(currentNode);
+                if (edgeNodes.size() == 2) {
+                    Edge edge = new Edge(edgeNodes.get(0), edgeNodes.get(1));
+                    edge.setOnMouseClicked(this::onMouseClicked);
+                    edge.setOnMousePressed(this::onMousePressed);
+                    edge.setOnMouseDragged(this::onMouseDragged);
+                    edges.add(edge);
+                    drawPanel.getChildren().add(edge);
+                    edge.toBack();
+                }
+            }else if (currentAction == DELETE){
+                List<Edge> edges = currentNode.getEdges();
+                System.out.println("Number of connected edges : " + edges.size());
+                while(edges.size() != 0){
+                    removeEdge(edges.get(0));
+                }
+                drawPanel.getChildren().remove(currentNode);
+                nodes.remove(currentNode);
+            }
+        } else if (mouseEvent.getSource() instanceof Edge) { // edge get clicked
+            System.out.println("onMouseClicked Edge");
+            Edge currentEdge = (Edge) mouseEvent.getSource();
+            if (currentAction == CONTROL) {
+                addControlToEdge(currentEdge);
+            }else if(currentAction == DELETE){
+                removeEdge(currentEdge);
+            }
+        }
     }
 
-    /***************************************************************************/
-    /**
+    public void onMousePressed(MouseEvent mouseEvent) {
+        pressedX = mouseEvent.getX();
+        pressedY = mouseEvent.getY();
+        if (mouseEvent.getSource() instanceof Node) {
+            System.out.println("onMousePressed Node");
+            Node currentNode = (Node) mouseEvent.getSource();
+            if (((currentAction == CONTROL) && currentNode.isControl()) || ((currentAction == MOVE) && currentNode.isNode())) {
+                pressedNode1X = currentNode.getCenterX();
+                pressedNode1Y = currentNode.getCenterY();
+            }
+        } else if (mouseEvent.getSource() instanceof Edge) {
+            System.out.println("onMousePressed Edge");
+            Edge currentEdge = (Edge) mouseEvent.getSource();
+            if (currentAction == MOVE) {
+                pressedNode1X = currentEdge.startNode.getCenterX();
+                pressedNode1Y = currentEdge.startNode.getCenterY();
+                pressedNode2X = currentEdge.endNode.getCenterX();
+                pressedNode2Y = currentEdge.endNode.getCenterY();
+                pressedNode3X = currentEdge.control1.getCenterX();
+                pressedNode3Y = currentEdge.control1.getCenterY();
+                pressedNode4X = currentEdge.control2.getCenterX();
+                pressedNode4Y = currentEdge.control2.getCenterY();
+            }
+        }
+    }
+
+    public void onMouseDragged(MouseEvent mouseEvent) {
+        if (mouseEvent.getSource() instanceof Node) {
+//            System.out.println("onMouseDragged Node");
+            Node currentNode = (Node) mouseEvent.getSource();
+            if (((currentAction == CONTROL) && currentNode.isControl()) || ((currentAction == MOVE) && currentNode.isNode())) {
+                currentNode.setCenter(
+                        pressedNode1X - pressedX + mouseEvent.getX(),
+                        pressedNode1Y - pressedY + mouseEvent.getY()
+                );
+            }
+        } else if (mouseEvent.getSource() instanceof Edge) {
+            System.out.println("onMouseDragged Edge");
+            Edge currentEdge = (Edge) mouseEvent.getSource();
+            if (currentAction == MOVE) {
+                currentEdge.startNode.setCenter(
+                        pressedNode1X - pressedX + mouseEvent.getX(),
+                        pressedNode1Y - pressedY + mouseEvent.getY()
+                );
+                currentEdge.endNode.setCenter(
+                        pressedNode2X - pressedX + mouseEvent.getX(),
+                        pressedNode2Y - pressedY + mouseEvent.getY()
+                );
+                currentEdge.control1.setCenter(
+                        pressedNode3X - pressedX + mouseEvent.getX(),
+                        pressedNode3Y - pressedY + mouseEvent.getY()
+                );
+                currentEdge.control2.setCenter(
+                        pressedNode4X - pressedX + mouseEvent.getX(),
+                        pressedNode4Y - pressedY + mouseEvent.getY()
+                );
+            }
+        }
+    }
+
+    /***************************************************************************
      *
      *  onAction handlers for fxml buttons
      *
-     */
-    /***************************************************************************/
+     ***************************************************************************/
 
     public void nodeAction(ActionEvent actionEvent) {
         currentAction = buttons.indexOf((Button) actionEvent.getSource());
@@ -493,6 +472,13 @@ public class GameController implements Initializable {
     public void moveAction(ActionEvent actionEvent) {
         currentAction = buttons.indexOf((Button) actionEvent.getSource());
 
+        checkReset();
         System.out.println("moveAction");
+    }
+
+    public void controlAction(ActionEvent actionEvent) {
+        currentAction = buttons.indexOf((Button) actionEvent.getSource());
+
+        System.out.println("controlAction");
     }
 }

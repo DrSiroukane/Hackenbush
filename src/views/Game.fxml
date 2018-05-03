@@ -32,6 +32,9 @@
          <Button fx:id="edgeButton" mnemonicParsing="false" onAction="#edgeAction">
             <tooltip><Tooltip text="draw edge" /></tooltip>
          </Button>
+         <Button fx:id="controlButton" mnemonicParsing="false" onAction="#controlAction">
+            <tooltip><Tooltip text="control edge" /></tooltip>
+         </Button>
          <Button fx:id="selectButton" mnemonicParsing="false" onAction="#selectAction">
             <tooltip><Tooltip text="select" /></tooltip>
          </Button>

@@ -1,9 +1,7 @@
 package models;
 
 import javafx.scene.paint.Color;
-import javafx.scene.shape.CubicCurveTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
+import javafx.scene.shape.*;
 
 public class Edge extends Path {
 
@@ -21,43 +19,37 @@ public class Edge extends Path {
 
     public Edge(Node startNode, Node endNode) {
         super();
-
         this.startNode = startNode;
         this.endNode = endNode;
-
+        startNode.getEdges().add(this);
+        if(!endNode.equals(startNode)){
+            endNode.getEdges().add(this);
+        }
         double startX = startNode.getCenterX();
         double startY = startNode.getCenterY();
-
         double endX = endNode.getCenterX();
         double endY = endNode.getCenterY();
-
         double controlX1;
         double controlY1;
-
         double controlX2;
         double controlY2;
 
         if(startNode.equals(endNode)){
             controlX1 = startX + 50;
             controlY1 = startY - 50;
-
             controlX2 = startX - 50;
             controlY2 = startY - 50;
         }else{
             double thirdOfX = (endX - startX) / 3;
             double thirdOfY = (endY - startY) / 3;
-
             controlX1 = startX + thirdOfX;
             controlY1 = startY + thirdOfY;
-
             controlX2 = controlX1 + thirdOfX;
             controlY2 = controlY1 + thirdOfY;
         }
 
-        control1 = new Node(controlX1, controlY1, 5);
-        control1.getStyleClass().add("node-tangent");
-        control2 = new Node(controlX2, controlY2, 5);
-        control2.getStyleClass().add("node-tangent");
+        control1 = new Node(controlX1, controlY1, 5, Node.CONTROL);
+        control2 = new Node(controlX2, controlY2, 5, Node.CONTROL);
 
         moveTo = new MoveTo(startX, startY);
         cubicCurveTo = new CubicCurveTo(controlX1, controlY1, controlX2, controlY2, endX, endY);
@@ -76,6 +68,10 @@ public class Edge extends Path {
         setStroke(Color.RED);
         setStrokeWidth(10);
         getElements().addAll(moveTo, cubicCurveTo);
+    }
+
+    public void draggedEdge(double draggedX, double draggedY){
+
     }
 
     /*public void setLineCoordinate(int position) {
