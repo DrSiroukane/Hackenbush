@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.CubicCurveTo?>
+<?import javafx.scene.shape.MoveTo?>
+<?import javafx.scene.shape.Path?>
+<Pane>
+    <Circle centerX="100" centerY="130"/>
+
+    <Path>
+        <elements>
+            <MoveTo x="10" y="10"/>
+            <CubicCurveTo x="300" y="300" controlX1="10" controlY1="300" controlX2="300" controlY2="10"/>
+        </elements>
+    </Path>
+</Pane>

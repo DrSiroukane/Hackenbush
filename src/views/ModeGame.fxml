@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+<BorderPane prefHeight="520.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModeGameController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#openFileAction" text="Open" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="switchModeMenuItem" mnemonicParsing="false" onAction="#saveFileAction" text="Switch mode" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#quitAction" text="Quit" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Undo" />
+                        <MenuItem mnemonicParsing="false" text="Redo" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Start" />
+                        <MenuItem mnemonicParsing="false" text="Reset" />
+                        <MenuItem mnemonicParsing="false" text="Paste" />
+                    </items>
+                </Menu>
+            <Menu mnemonicParsing="false" text="Mode">
+               <items>
+                  <RadioMenuItem mnemonicParsing="false" text="Human vs Human" />
+                  <RadioMenuItem mnemonicParsing="false" text="Human vs Bot" />
+               </items>
+            </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <left>
+        <ListView fx:id="listViewDesigns" prefWidth="200.0" />
+    </left>
+    <center>
+        <Pane fx:id="drawPanel" />
+    </center>
+</BorderPane>

@@ -1,0 +1,115 @@
+/*
+    body design
+ */
+#toolbar {
+    -fx-background-color: #a2ee8c;
+}
+
+#drawPanel {
+    -fx-background-color: #bcf8ff;
+}
+
+/*
+    buttons icon
+*/
+#nodeButton, #edgeButton, #controlButton, #selectButton, #cutButton, #copyButton, #pasteButton,
+#duplicateButton, #saveButton, #deleteButton, #changeColorButton, #redoButton, #moveButton {
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-background-color: #45beff;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 30px;
+}
+
+#nodeButton:hover, #edgeButton:hover, #controlButton:hover, #selectButton:hover, #cutButton:hover, #copyButton:hover, #pasteButton:hover,
+#duplicateButton:hover, #saveButton:hover, #deleteButton:hover, #changeColorButton:hover, #redoButton:hover, #moveButton:hover {
+    -fx-background-color: #f88;
+}
+
+#nodeButton:pressed, #edgeButton:pressed, #controlButton:pressed, #selectButton:pressed, #cutButton:pressed, #copyButton:pressed, #pasteButton:pressed,
+#duplicateButton:pressed, #saveButton:pressed, #deleteButton:pressed, #changeColorButton:pressed, #redoButton:pressed, #moveButton:pressed {
+    -fx-background-color: #ff8888;
+}
+
+#nodeButton:disabled, #edgeButton:disabled, #controlButton:disabled, #selectButton:disabled, #cutButton:disabled, #copyButton:disabled, #pasteButton:disabled,
+#duplicateButton:disabled, #saveButton:disabled, #deleteButton:disabled, #changeColorButton:disabled, #redoButton:disabled, #moveButton:disabled {
+    -fx-background-color: #296b91;
+}
+
+#nodeButton {
+    -fx-background-size: 10px;
+    -fx-background-image: url('../img/icons/012-square.png');
+}
+
+#edgeButton {
+    -fx-background-image: url('../img/icons/015-line.png');
+}
+
+#controlButton {
+    -fx-background-image: url('../img/icons/023-line-2.png');
+}
+
+#selectButton {
+    -fx-background-image: url('../img/icons/check-box-empty.png');
+}
+
+#cutButton {
+    -fx-background-image: url('../img/icons/020-cut.png');
+}
+
+#copyButton {
+    -fx-background-image: url('../img/icons/021-copy-document.png');
+}
+
+#pasteButton {
+    -fx-background-image: url('../img/icons/018-interface.png');
+}
+
+#duplicateButton {
+    -fx-background-image: url('../img/icons/010-two.png');
+}
+
+#saveButton {
+    -fx-background-image: url('../img/icons/006-interface-2.png');
+}
+
+#deleteButton {
+    -fx-background-image: url('../img/icons/016-eraser.png');
+}
+
+#moveButton {
+    -fx-background-image: url('../img/icons/011-arrows-1.png');
+}
+
+#changeColorButton {
+    -fx-background-image: url('../img/icons/024-color-bucket.png');
+}
+
+/*
+    design style
+*/
+.node-style {
+    -fx-fill: #ffffff;
+    -fx-stroke: black;
+}
+
+.root-node-style {
+    -fx-fill: rgba(255, 243, 51, 0.93);
+    -fx-stroke: black;
+}
+
+.node-tangent {
+    -fx-fill: #eedd00;
+    -fx-stroke-width: 0px;
+}
+
+.connection-line {
+    -fx-stroke: black;
+    -fx-stroke-width: 8px;
+    /*-fx-stroke-dash-array: 12 2 4 2;*/
+    -fx-stroke-dash-offset: 6;
+    -fx-stroke-line-cap: butt;
+}
+
+

@@ -1,0 +1,13 @@
+VBox {
+    -fx-background-color: #a2ee8c;
+}
+
+Button {
+    -fx-background-color: #45beff;
+    -fx-pref-width: 120px;
+    -fx-pref-height: 40px;
+}
+
+Button:hover {
+    -fx-background-color: #f88;
+}

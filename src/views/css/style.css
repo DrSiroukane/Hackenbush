@@ -9,5 +9,5 @@
 
 .line-style {
     -fx-fill: blue;
-    -fx-stroke-width: 10px;
+    -fx-stroke-width: 2px;
 }

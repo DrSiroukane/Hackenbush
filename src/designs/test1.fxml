@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.CubicCurveTo?>
+<?import javafx.scene.shape.MoveTo?>
+<?import javafx.scene.shape.Path?>
+<Pane stylesheets="../views/css/modeGeneric.css">
+	<Path strokeWidth="8.0" stroke="0xff0000ff">
+		<elements>
+			<MoveTo x="161.0" y="308.0" />
+			<CubicCurveTo x="145.0" y="237.0 " controlX1="105.33333333333334" controlY1="235.0 " controlX2="106.66666666666669" controlY2="236.0"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="8.0" stroke="0xff0000ff">
+		<elements>
+			<MoveTo x="145.0" y="237.0" />
+			<CubicCurveTo x="261.0" y="241.0 " controlX1="260.0" controlY1="158.66666666666669 " controlX2="260.0" controlY2="158.33333333333334"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="8.0" stroke="0xff0000ff">
+		<elements>
+			<MoveTo x="261.0" y="241.0" />
+			<CubicCurveTo x="362.0" y="344.0 " controlX1="295.0" controlY1="188.0 " controlX2="296.0" controlY2="188.0"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="8.0" stroke="0xff0000ff">
+		<elements>
+			<MoveTo x="362.0" y="344.0" />
+			<CubicCurveTo x="161.0" y="308.0 " controlX1="223.66666666666669" controlY1="248.33333333333337 " controlX2="222.33333333333337" controlY2="248.66666666666669"/>
+		</elements>
+	</Path>
+	<Circle styleClass="node-style" radius="7.0" centerX="261.0" centerY="241.0"/>
+	<Circle styleClass="node-style" radius="7.0" centerX="362.0" centerY="344.0"/>
+	<Circle styleClass="node-style" radius="7.0" centerX="161.0" centerY="308.0"/>
+	<Circle styleClass="node-style" radius="7.0" centerX="145.0" centerY="237.0"/>
+</Pane>

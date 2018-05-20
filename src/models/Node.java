@@ -1,21 +1,31 @@
 package models;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import java.util.*;
 
 public class Node extends Circle{
-
     public static final int NODE = 0;
     public static final int CONTROL = 1;
 
     private int type = NODE;
+    private boolean root = false;
 
     private List<Edge> edges = null;
 
+    public Node(Circle circle){
+        super();
+        setCenterX(circle.getCenterX());
+        setCenterY(circle.getCenterY());
+        setRadius(circle.getRadius());
+        edges = new ArrayList<>();
+        getStyleClass().add(circle.getStyle());
+    }
+
     public Node(double centerX, double centerY) {
         super();
-        setRadius(10);
+        setRadius(7);
         setCenterX(centerX);
         setCenterY(centerY);
         edges = new ArrayList<>();
@@ -59,6 +69,23 @@ public class Node extends Circle{
         this.edges = edges;
     }
 
+    public void setCenter(double centerX, double centerY){
+        setCenterX(centerX);
+        setCenterY(centerY);
+    }
+
+    public void setRoot(boolean root){
+        if(isNode()){
+            getStyleClass().clear();
+            if(root){
+                getStyleClass().add("root-node-style");
+            }else{
+                getStyleClass().add("node-style");
+            }
+        }
+        this.root = root;
+    }
+
     public boolean isNode(){
         return type == NODE;
     }
@@ -67,8 +94,13 @@ public class Node extends Circle{
         return type == CONTROL;
     }
 
-    public void setCenter(double centerX, double centerY){
-        setCenterX(centerX);
-        setCenterY(centerY);
+    public boolean isRootNode() {
+        return root;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "\n\tcenterX: " + getCenterX() + "\tcenterY: " + getCenterY();
     }
 }

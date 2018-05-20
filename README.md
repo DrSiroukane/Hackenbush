@@ -1,13 +1,27 @@
 # TODO
-- interface. DONE*
-- Add nodes in graph. DONE*
-- Create edge between 2 nodes. DONE*
-- delete nodes and edges not connected. (when turning to play mode) HALF*
-- move nodes easily. DONE*
-- edge follow its node while moving. DONE*
-- edges color has to be easy to change.
-- select parte of graph.
-- duplicate.
-- move. HALF*
-- cut / copy / paste.
-- change line forma (Path). DONE*
+
+## Mode Generic
+
+- Interface with menu, tool bar, drawSpace. DONE
+- create nodes. DONE
+- create edge connect 2 nodes or just one. DONE
+- change (Line) format to (Path). DONE
+- move nodes & edges easily with binding. DONE
+- delete nodes and edges. DONE
+- edges change color. DONE
+- select part of graph. HALF
+- cut / copy / paste / duplicate.
+
+## Mode Nim
+
+
+
+## Mode Game
+
+- Interface with menu, listView, pane DONE
+
+
+## Main Game
+
+- Interface with button to access to different interface mode. DONE
+
