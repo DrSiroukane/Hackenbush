@@ -9,8 +9,8 @@
 - move nodes & edges easily with binding. DONE
 - delete nodes and edges. DONE
 - edges change color. DONE
-- select part of graph. HALF
-- cut / copy / paste / duplicate.
+- select part of graph. DONE
+- cut / copy / paste / duplicate DONE
 
 ## Mode Nim
 

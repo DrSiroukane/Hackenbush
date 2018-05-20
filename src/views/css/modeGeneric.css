@@ -99,6 +99,15 @@
     -fx-stroke: black;
 }
 
+.node-selected {
+    -fx-stroke-width: 2px;
+    -fx-stroke: orange;
+}
+
+.edge-selected {
+    -fx-stroke: orange;
+}
+
 .node-tangent {
     -fx-fill: #eedd00;
     -fx-stroke-width: 0px;

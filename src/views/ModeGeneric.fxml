@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -15,42 +16,110 @@
 <BorderPane minWidth="960.0" prefHeight="520.0" prefWidth="960.0" stylesheets="@css/modeGeneric.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModeGenericController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
-            <menus>
-                <Menu mnemonicParsing="false" text="File">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#newFileAction" text="New" />
-                        <MenuItem mnemonicParsing="false" onAction="#openFileAction" text="Open" />
-                        <MenuItem mnemonicParsing="false" onAction="#saveFileAction" text="Save" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="switchModeMenuItem" mnemonicParsing="false" onAction="#saveFileAction" text="Switch mode" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#quitAction" text="Quit" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Undo" />
-                        <MenuItem mnemonicParsing="false" text="Redo" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Cut" />
-                        <MenuItem mnemonicParsing="false" text="Copy" />
-                        <MenuItem mnemonicParsing="false" text="Paste" />
-                        <MenuItem mnemonicParsing="false" text="Duplicate" />
-                        <MenuItem mnemonicParsing="false" text="Delete" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Select" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Draw">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Node" />
-                        <MenuItem mnemonicParsing="false" text="Edge" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Edge Control" />
-                        <MenuItem mnemonicParsing="false" text="Edge Color" />
-                    </items>
-                </Menu>
-            </menus>
+            <Menu mnemonicParsing="false" text="File">
+                <accelerator>
+                    <KeyCodeCombination alt="DOWN" code="F" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                </accelerator>
+                <MenuItem mnemonicParsing="false" onAction="#newFileAction" text="New">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <MenuItem mnemonicParsing="false" onAction="#openFileAction" text="Open">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <MenuItem mnemonicParsing="false" onAction="#saveFileAction" text="Save">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem fx:id="switchModeMenuItem" mnemonicParsing="false" text="Switch mode">
+                    <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem mnemonicParsing="false" onAction="#quitAction" text="Quit">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+                <MenuItem fx:id="undoMenuItem" mnemonicParsing="false" onAction="#undoAction" text="Undo">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <MenuItem fx:id="redoMenuItem" mnemonicParsing="false" onAction="#redoAction" text="Redo">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem fx:id="cutMenuItem" mnemonicParsing="false" onAction="#cutAction" text="Cut">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <MenuItem fx:id="copyMenuItem" mnemonicParsing="false" onAction="#copyAction" text="Copy">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <MenuItem fx:id="pasteMenuItem" mnemonicParsing="false" onAction="#pasteAction" text="Paste">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="V" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <MenuItem fx:id="duplicateMenuItem" mnemonicParsing="false" onAction="#duplicateAction" text="Duplicate">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <MenuItem fx:id="deleteMenuItem" mnemonicParsing="false" onAction="#deleteAction" text="Delete">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem fx:id="selectMenuItem" mnemonicParsing="false" onAction="#selectAction" text="Select">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <MenuItem fx:id="moveMenuItem" mnemonicParsing="false" onAction="#moveAction" text="Move">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Draw">
+                <MenuItem fx:id="nodeMenuItem" mnemonicParsing="false" onAction="#nodeAction" text="Node">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <MenuItem fx:id="edgeMenuItem" mnemonicParsing="false" onAction="#edgeAction" text="Edge">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem fx:id="controlMenuItem" mnemonicParsing="false" onAction="#controlAction" text="Edge Control">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <MenuItem fx:id="changeColorMenuItem" mnemonicParsing="false" onAction="#changeColorAction" text="Edge Color">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+            </Menu>
         </MenuBar>
     </top>
     <center>
@@ -62,83 +131,71 @@
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                <children>
-                    <Button fx:id="nodeButton" mnemonicParsing="false" onAction="#nodeAction">
-                        <tooltip>
-                            <Tooltip text="draw node" />
-                        </tooltip>
-                    </Button>
-                    <Button fx:id="edgeButton" mnemonicParsing="false" onAction="#edgeAction">
-                        <tooltip>
-                            <Tooltip text="draw edge" />
-                        </tooltip>
-                    </Button>
-                </children>
+                <Button fx:id="nodeButton" mnemonicParsing="false" onAction="#nodeAction">
+                    <tooltip>
+                        <Tooltip text="draw node" />
+                    </tooltip>
+                </Button>
+                <Button fx:id="edgeButton" mnemonicParsing="false" onAction="#edgeAction">
+                    <tooltip>
+                        <Tooltip text="draw edge" />
+                    </tooltip>
+                </Button>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                <children>
-                    <Button fx:id="controlButton" mnemonicParsing="false" onAction="#controlAction">
-                        <tooltip>
-                            <Tooltip text="edge control" />
-                        </tooltip>
-                    </Button>
-                    <Button fx:id="selectButton" mnemonicParsing="false" onAction="#selectAction">
-                        <tooltip>
-                            <Tooltip text="select" />
-                        </tooltip>
-                    </Button>
-                </children>
+                <Button fx:id="controlButton" mnemonicParsing="false" onAction="#controlAction">
+                    <tooltip>
+                        <Tooltip text="edge control" />
+                    </tooltip>
+                </Button>
+                <Button fx:id="selectButton" mnemonicParsing="false" onAction="#selectAction">
+                    <tooltip>
+                        <Tooltip text="select" />
+                    </tooltip>
+                </Button>
             </HBox>
             <HBox alignment="CENTER" layoutX="15.0" layoutY="76.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                <children>
-                    <Button fx:id="duplicateButton" mnemonicParsing="false" onAction="#duplicateAction">
-                        <tooltip>
-                            <Tooltip text="duplicate" />
-                        </tooltip>
-                    </Button>
-                    <Button fx:id="cutButton" mnemonicParsing="false" onAction="#cutAction">
-                        <tooltip>
-                            <Tooltip text="cut" />
-                        </tooltip>
-                    </Button>
-                </children>
+                <Button fx:id="cutButton" mnemonicParsing="false" onAction="#cutAction">
+                    <tooltip>
+                        <Tooltip text="cut" />
+                    </tooltip>
+                </Button>
+                <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyAction">
+                    <tooltip>
+                        <Tooltip text="copy" />
+                    </tooltip>
+                </Button>
             </HBox>
             <HBox alignment="CENTER" layoutX="15.0" layoutY="469.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                <children>
-                    <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyAction">
-                        <tooltip>
-                            <Tooltip text="copy" />
-                        </tooltip>
-                    </Button>
-                    <Button fx:id="pasteButton" mnemonicParsing="false" onAction="#pasteAction">
-                        <tooltip>
-                            <Tooltip text="paste" />
-                        </tooltip>
-                    </Button>
-                </children>
+                <Button fx:id="pasteButton" mnemonicParsing="false" onAction="#pasteAction">
+                    <tooltip>
+                        <Tooltip text="paste" />
+                    </tooltip>
+                </Button>
+                <Button fx:id="duplicateButton" mnemonicParsing="false" onAction="#duplicateAction">
+                    <tooltip>
+                        <Tooltip text="duplicate" />
+                    </tooltip>
+                </Button>
             </HBox>
             <HBox alignment="CENTER" layoutX="15.0" layoutY="481.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                <children>
-                    <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteAction">
-                        <tooltip>
-                            <Tooltip text="delete" />
-                        </tooltip>
-                    </Button>
-                    <Button fx:id="moveButton" mnemonicParsing="false" onAction="#moveAction">
-                        <tooltip>
-                            <Tooltip text="move" />
-                        </tooltip>
-                    </Button>
-                </children>
+                <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteAction">
+                    <tooltip>
+                        <Tooltip text="delete" />
+                    </tooltip>
+                </Button>
+                <Button fx:id="moveButton" mnemonicParsing="false" onAction="#moveAction">
+                    <tooltip>
+                        <Tooltip text="move" />
+                    </tooltip>
+                </Button>
             </HBox>
             <HBox alignment="CENTER" layoutX="15.0" layoutY="489.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                <children>
-                    <Button fx:id="changeColorButton" mnemonicParsing="false" onAction="#changeColorAction">
-                        <tooltip>
-                            <Tooltip text="change color" />
-                        </tooltip>
-                    </Button>
-                </children>
+                <Button fx:id="changeColorButton" mnemonicParsing="false" onAction="#changeColorAction">
+                    <tooltip>
+                        <Tooltip text="change color" />
+                    </tooltip>
+                </Button>
             </HBox>
         </VBox>
     </left>

@@ -1,11 +1,11 @@
 package models;
 
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Node extends Circle{
+public class Node extends Circle {
     public static final int NODE = 0;
     public static final int CONTROL = 1;
 
@@ -14,7 +14,7 @@ public class Node extends Circle{
 
     private List<Edge> edges = null;
 
-    public Node(Circle circle){
+    public Node(Circle circle) {
         super();
         setCenterX(circle.getCenterX());
         setCenterY(circle.getCenterY());
@@ -25,14 +25,14 @@ public class Node extends Circle{
 
     public Node(double centerX, double centerY) {
         super();
-        setRadius(7);
+        setRadius(5);
         setCenterX(centerX);
         setCenterY(centerY);
         edges = new ArrayList<>();
         getStyleClass().add("node-style");
     }
 
-    public Node(double centerX, double centerY, int radius) {
+    public Node(double centerX, double centerY, double radius) {
         super();
         setRadius(radius);
         setCenterX(centerX);
@@ -40,12 +40,20 @@ public class Node extends Circle{
         getStyleClass().add("node-style");
     }
 
-    public Node(double centerX, double centerY, int radius, int type) {
+    public Node(double centerX, double centerY, double radius, int type) {
         super();
         setRadius(radius);
         setCenterX(centerX);
         setCenterY(centerY);
         setType(type);
+        if (isNode()) {
+            edges = new ArrayList<>();
+            getStyleClass().add("node-style");
+        }
+    }
+
+    public Node clone(double shift) {
+        return new Node(getCenterX() - shift, getCenterY() - shift, getRadius(), getType());
     }
 
     public int getType() {
@@ -54,9 +62,9 @@ public class Node extends Circle{
 
     public void setType(int type) {
         this.type = type;
-        if(isNode()){
+        if (isNode()) {
             getStyleClass().add("node-style");
-        }else{
+        } else {
             getStyleClass().add("node-tangent");
         }
     }
@@ -69,28 +77,26 @@ public class Node extends Circle{
         this.edges = edges;
     }
 
-    public void setCenter(double centerX, double centerY){
+    public void setCenter(double centerX, double centerY) {
         setCenterX(centerX);
         setCenterY(centerY);
     }
 
-    public void setRoot(boolean root){
-        if(isNode()){
-            getStyleClass().clear();
-            if(root){
-                getStyleClass().add("root-node-style");
-            }else{
-                getStyleClass().add("node-style");
-            }
-        }
+    public void setRoot(boolean root) {
         this.root = root;
+        if (isNode()) {
+            boolean selectNode = getStyleClass().contains("node-selected");
+            getStyleClass().clear();
+            getStyleClass().add((root) ? "root-node-style" : "node-style");
+            if (selectNode) getStyleClass().add("node-selected");
+        }
     }
 
-    public boolean isNode(){
+    public boolean isNode() {
         return type == NODE;
     }
 
-    public boolean isControl(){
+    public boolean isControl() {
         return type == CONTROL;
     }
 
