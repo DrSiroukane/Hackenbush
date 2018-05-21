@@ -27,7 +27,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -190,7 +189,6 @@ public class ModeGenericController implements Initializable {
                             clearSelection();
                         }
                     }
-
                 }
         );
     }
@@ -378,7 +376,7 @@ public class ModeGenericController implements Initializable {
                     selectNodes.add(edge.edgeNodes[0]);
                     edge.getStyleClass().add("edge-selected");
                     edge.edgeNodes[0].getStyleClass().add("node-selected");
-                    if(edge.nbrEdgeNodes == 2){
+                    if (edge.nbrEdgeNodes == 2) {
                         edge.edgeNodes[1].getStyleClass().add("node-selected");
                         selectNodes.add(edge.edgeNodes[1]);
                     }
@@ -406,42 +404,11 @@ public class ModeGenericController implements Initializable {
                 x = checkBorn(x, drawSpaceIntervalX);
                 y = checkBorn(y, drawSpaceIntervalY);
                 currentNode.setCenter(x, y);
-                currentNode.setRoot(connectionLinePosition - 10 < y);
                 pressedX = mouseEvent.getX();
                 pressedY = mouseEvent.getY();
             }
         } else if (mouseEvent.getSource() instanceof Edge) {
 //            System.out.println("onMouseDragged Edge");
-            /*Edge currentEdge = (Edge) mouseEvent.getSource();
-            if (currentAction.intValue() == MOVE) {
-                if (selectNodes.isEmpty()) {
-                    double[] xs = new double[4];
-                    double[] ys = new double[4];
-                    for (int i = 0; i < 2; i++) {
-                        xs[i] = currentEdge.edgeNodes[i].getCenterX() - pressedX + mouseEvent.getX();
-                        xs[i + 2] = currentEdge.controls[i].getCenterX() - pressedX + mouseEvent.getX();
-                        ys[i] = currentEdge.edgeNodes[i].getCenterY() - pressedY + mouseEvent.getY();
-                        ys[i + 2] = currentEdge.controls[i].getCenterY() - pressedY + mouseEvent.getY();
-                    }
-                    for (int i = 0; i < 4; i++) {
-                        xs[i] = checkBorn(xs[i], new double[] {7d, 750d});
-                        if (ys[i] < 7) {
-                            ys[i] = 7;
-                        } else if ((460 < ys[i]) && (i < 2)) {
-                            ys[i] = 460;
-                        } else if ((440 < ys[i]) && (1 < i)) {
-                            ys[i] = 440;
-                        }
-                    }
-                    for (int i = 0; i < 2; i++) {
-                        currentEdge.edgeNodes[i].setCenter(xs[i], ys[i]);
-                        currentEdge.edgeNodes[i].setRoot(connectionLinePosition - 10 < ys[i]);
-                        currentEdge.controls[i].setCenter(xs[i + 2], ys[i + 2]);
-                    }
-                }
-            }
-            pressedX = mouseEvent.getX();
-            pressedY = mouseEvent.getY();*/
         } else if (mouseEvent.getSource() instanceof Pane) {
 //            System.out.println("onMouseDragged Pane");
             if (currentAction.intValue() == SELECT) {
@@ -511,8 +478,11 @@ public class ModeGenericController implements Initializable {
                     }
                     if (moveSelection) {
                         for (Node node : selectNodes) {
-                            node.setCenterX(node.getCenterX() + (mouseEvent.getX() - pressedX));
-                            node.setCenterY(node.getCenterY() + (mouseEvent.getY() - pressedY));
+                            double x = node.getCenterX() + (mouseEvent.getX() - pressedX);
+                            double y = node.getCenterY() + (mouseEvent.getY() - pressedY);
+                            node.setCenterX(x);
+                            node.setCenterY(y);
+                            node.setRoot(connectionLinePosition - 10 < y);
                         }
                         for (Edge edge : selectEdges) {
                             for (Node node : edge.controls) {

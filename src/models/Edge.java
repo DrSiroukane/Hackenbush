@@ -5,6 +5,8 @@ import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 
+import java.util.List;
+
 /**
  * @author Slimane Siroukane
  * @author Fatima Chikh
@@ -26,7 +28,7 @@ public class Edge extends Path {
         startNode.getEdges().add(this);
         if (!endNode.equals(startNode)) {
             endNode.getEdges().add(this);
-        }else{
+        } else {
             nbrEdgeNodes = 1;
         }
         double startX = startNode.getCenterX();
@@ -64,7 +66,7 @@ public class Edge extends Path {
         startNode.getEdges().add(this);
         if (!endNode.equals(startNode)) {
             endNode.getEdges().add(this);
-        }else{
+        } else {
             nbrEdgeNodes = 1;
         }
         this.controls = new Node[2];
@@ -78,6 +80,29 @@ public class Edge extends Path {
         setStrokeWidth(6);
     }
 
+    public Edge(Path path, List<Node> nodes) {
+        moveTo = (MoveTo) path.getElements().get(0);
+        cubicCurveTo = (CubicCurveTo) path.getElements().get(1);
+        edgeNodes = new Node[2];
+        for (Node node : nodes) {
+            if (node.getCenterX() == moveTo.getX() && node.getCenterY() == moveTo.getY()) {
+                edgeNodes[0] = node;
+                node.getEdges().add(this);
+            }
+            if (node.getCenterX() == cubicCurveTo.getX() && node.getCenterY() == cubicCurveTo.getY()) {
+                edgeNodes[1] = node;
+                if (edgeNodes[0] != edgeNodes[1]) {
+                    node.getEdges().add(this);
+                } else {
+                    nbrEdgeNodes = 1;
+                }
+            }
+        }
+        getElements().addAll(moveTo, cubicCurveTo);
+        setStroke(path.getStroke());
+        setStrokeWidth(6);
+    }
+
     public void switchColor() {
         currentColor = (1 + currentColor) % 3;
         setStroke(colors[currentColor]);
@@ -87,7 +112,7 @@ public class Edge extends Path {
         return new Edge(startNode, endNode, controls, shift);
     }
 
-    public void setBind(){
+    public void setBind() {
         moveTo = new MoveTo(edgeNodes[0].getCenterX(), edgeNodes[0].getCenterY());
         cubicCurveTo = new CubicCurveTo(controls[0].getCenterX(), controls[0].getCenterY(),
                 this.controls[1].getCenterX(), this.controls[1].getCenterY(),

@@ -55,7 +55,7 @@ public class MainGame extends Application {
 
         primaryScene = new Scene(mainGamelayout);
         primaryStage.setScene(primaryScene);
-//        primaryStage.setResizable(false);
+        primaryStage.setResizable(false);
         primaryStage.setTitle("Hackenbush");
         primaryStage.show();
     }

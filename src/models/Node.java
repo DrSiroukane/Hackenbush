@@ -20,7 +20,8 @@ public class Node extends Circle {
         setCenterY(circle.getCenterY());
         setRadius(circle.getRadius());
         edges = new ArrayList<>();
-        getStyleClass().add(circle.getStyle());
+        getStyleClass().add(circle.getStyleClass().toString());
+        setRoot(getStyleClass().contains("root-node-style"));
     }
 
     public Node(double centerX, double centerY) {

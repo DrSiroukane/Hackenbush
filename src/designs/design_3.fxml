@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.CubicCurveTo?>
-<?import javafx.scene.shape.MoveTo?>
-<?import javafx.scene.shape.Path?>
-<Pane stylesheets="file:/D:/2017-2018/Semester%202/Interfaces%20graphiques/interface-graphic/out/production/interface-graphic/views/css/game.css">
-</Pane>

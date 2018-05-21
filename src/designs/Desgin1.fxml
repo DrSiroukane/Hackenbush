@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.CubicCurveTo?>
+<?import javafx.scene.shape.MoveTo?>
+<?import javafx.scene.shape.Path?>
+<Pane stylesheets="file:/D:/2017-2018/Semester%202/Interfaces%20graphiques/interface-graphic/out/production/interface-graphic/views/css/modeGeneric.css">
+	<Path strokeWidth="6.0" stroke="0x008000ff">
+		<elements>
+			<MoveTo x="308.0" y="137.0" />
+			<CubicCurveTo x="296.0" y="170.0 " controlX1="304.0" controlY1="148.0 " controlX2="300.0" controlY2="159.0"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0x008000ff">
+		<elements>
+			<MoveTo x="304.0" y="172.0" />
+			<CubicCurveTo x="296.0" y="170.0 " controlX1="301.3333333333333" controlY1="171.33333333333334 " controlX2="298.66666666666663" controlY2="170.66666666666669"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0x008000ff">
+		<elements>
+			<MoveTo x="201.0" y="216.0" />
+			<CubicCurveTo x="304.0" y="172.0 " controlX1="235.33333333333334" controlY1="201.33333333333334 " controlX2="269.6666666666667" controlY2="186.66666666666669"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0x008000ff">
+		<elements>
+			<MoveTo x="296.0" y="170.0" />
+			<CubicCurveTo x="304.0" y="172.0 " controlX1="298.6666666666667" controlY1="170.66666666666666 " controlX2="301.33333333333337" controlY2="171.33333333333331"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0xff0000ff">
+		<elements>
+			<MoveTo x="304.0" y="172.0" />
+			<CubicCurveTo x="470.0" y="165.0 " controlX1="359.3333333333333" controlY1="169.66666666666666 " controlX2="414.66666666666663" controlY2="167.33333333333331"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0x008000ff">
+		<elements>
+			<MoveTo x="304.0" y="172.0" />
+			<CubicCurveTo x="298.0" y="241.0 " controlX1="302.0" controlY1="195.0 " controlX2="300.0" controlY2="218.0"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0x008000ff">
+		<elements>
+			<MoveTo x="296.0" y="170.0" />
+			<CubicCurveTo x="304.0" y="172.0 " controlX1="298.6666666666667" controlY1="170.66666666666666 " controlX2="301.33333333333337" controlY2="171.33333333333331"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0xff0000ff">
+		<elements>
+			<MoveTo x="453.0" y="306.0" />
+			<CubicCurveTo x="304.0" y="172.0 " controlX1="403.3333333333333" controlY1="261.3333333333333 " controlX2="353.66666666666663" controlY2="216.66666666666666"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0x0000ffff">
+		<elements>
+			<MoveTo x="207.0" y="324.0" />
+			<CubicCurveTo x="298.0" y="241.0 " controlX1="237.33333333333334" controlY1="296.3333333333333 " controlX2="267.6666666666667" controlY2="268.66666666666663"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0x0000ffff">
+		<elements>
+			<MoveTo x="298.0" y="241.0" />
+			<CubicCurveTo x="451.0" y="460.0 " controlX1="349.0" controlY1="314.0 " controlX2="400.0" controlY2="387.0"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0x008000ff">
+		<elements>
+			<MoveTo x="310.0" y="430.0" />
+			<CubicCurveTo x="196.0" y="460.0 " controlX1="272.0" controlY1="440.0 " controlX2="234.0" controlY2="450.0"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0xff0000ff">
+		<elements>
+			<MoveTo x="298.0" y="241.0" />
+			<CubicCurveTo x="310.0" y="430.0 " controlX1="302.0" controlY1="304.0 " controlX2="306.0" controlY2="367.0"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0xff0000ff">
+		<elements>
+			<MoveTo x="123.0" y="364.0" />
+			<CubicCurveTo x="110.0" y="460.0 " controlX1="118.66666666666667" controlY1="396.0 " controlX2="114.33333333333334" controlY2="428.0"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0x008000ff">
+		<elements>
+			<MoveTo x="123.0" y="364.0" />
+			<CubicCurveTo x="119.0" y="285.0 " controlX1="121.66666666666667" controlY1="337.6666666666667 " controlX2="120.33333333333334" controlY2="311.33333333333337"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0x0000ffff">
+		<elements>
+			<MoveTo x="119.0" y="285.0" />
+			<CubicCurveTo x="94.0" y="187.0 " controlX1="110.66666666666667" controlY1="252.33333333333334 " controlX2="102.33333333333334" controlY2="219.66666666666669"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0xff0000ff">
+		<elements>
+			<MoveTo x="94.0" y="187.0" />
+			<CubicCurveTo x="180.0" y="136.0 " controlX1="122.66666666666667" controlY1="170.0 " controlX2="151.33333333333334" controlY2="153.0"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0xff0000ff">
+		<elements>
+			<MoveTo x="533.0" y="357.0" />
+			<CubicCurveTo x="601.0" y="328.0 " controlX1="555.6666666666666" controlY1="347.3333333333333 " controlX2="578.3333333333333" controlY2="337.66666666666663"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0x008000ff">
+		<elements>
+			<MoveTo x="601.0" y="328.0" />
+			<CubicCurveTo x="591.0" y="207.0 " controlX1="597.6666666666666" controlY1="287.6666666666667 " controlX2="594.3333333333333" controlY2="247.33333333333334"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0xff0000ff">
+		<elements>
+			<MoveTo x="591.0" y="207.0" />
+			<CubicCurveTo x="702.0" y="266.0 " controlX1="628.0" controlY1="226.66666666666666 " controlX2="665.0" controlY2="246.33333333333331"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0xff0000ff">
+		<elements>
+			<MoveTo x="640.0" y="460.0" />
+			<CubicCurveTo x="533.0" y="357.0 " controlX1="604.3333333333334" controlY1="425.6666666666667 " controlX2="568.6666666666667" controlY2="391.33333333333337"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0x0000ffff">
+		<elements>
+			<MoveTo x="533.0" y="357.0" />
+			<CubicCurveTo x="453.0" y="306.0 " controlX1="506.3333333333333" controlY1="340.0 " controlX2="479.66666666666663" controlY2="323.0"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0x0000ffff">
+		<elements>
+			<MoveTo x="470.0" y="165.0" />
+			<CubicCurveTo x="453.0" y="306.0 " controlX1="464.3333333333333" controlY1="212.0 " controlX2="458.66666666666663" controlY2="259.0"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0x0000ffff">
+		<elements>
+			<MoveTo x="180.0" y="136.0" />
+			<CubicCurveTo x="308.0" y="137.0 " controlX1="222.66666666666666" controlY1="136.33333333333334 " controlX2="265.3333333333333" controlY2="136.66666666666669"/>
+		</elements>
+	</Path>
+	<Path strokeWidth="6.0" stroke="0xff0000ff">
+		<elements>
+			<MoveTo x="201.0" y="216.0" />
+			<CubicCurveTo x="119.0" y="285.0 " controlX1="173.66666666666666" controlY1="239.0 " controlX2="146.33333333333331" controlY2="262.0"/>
+		</elements>
+	</Path>
+	<Circle styleClass="node-style" radius="5.0" centerX="304.0" centerY="172.0"/>
+	<Circle styleClass="node-style" radius="5.0" centerX="298.0" centerY="241.0"/>
+	<Circle styleClass="node-style" radius="5.0" centerX="207.0" centerY="324.0"/>
+	<Circle styleClass="node-style" radius="5.0" centerX="453.0" centerY="306.0"/>
+	<Circle styleClass="node-style" radius="5.0" centerX="310.0" centerY="430.0"/>
+	<Circle styleClass="root-node-style" radius="5.0" centerX="196.0" centerY="460.0"/>
+	<Circle styleClass="root-node-style" radius="5.0" centerX="451.0" centerY="460.0"/>
+	<Circle styleClass="node-style" radius="5.0" centerX="201.0" centerY="216.0"/>
+	<Circle styleClass="node-style" radius="5.0" centerX="470.0" centerY="165.0"/>
+	<Circle styleClass="node-style" radius="5.0" centerX="296.0" centerY="170.0"/>
+	<Circle styleClass="node-style" radius="5.0" centerX="308.0" centerY="137.0"/>
+	<Circle styleClass="root-node-style" radius="5.0" centerX="110.0" centerY="460.0"/>
+	<Circle styleClass="node-style" radius="5.0" centerX="123.0" centerY="364.0"/>
+	<Circle styleClass="node-style" radius="5.0" centerX="119.0" centerY="285.0"/>
+	<Circle styleClass="node-style" radius="5.0" centerX="94.0" centerY="187.0"/>
+	<Circle styleClass="node-style" radius="5.0" centerX="180.0" centerY="136.0"/>
+	<Circle styleClass="root-node-style" radius="5.0" centerX="640.0" centerY="460.0"/>
+	<Circle styleClass="node-style" radius="5.0" centerX="601.0" centerY="328.0"/>
+	<Circle styleClass="node-style" radius="5.0" centerX="533.0" centerY="357.0"/>
+	<Circle styleClass="node-style" radius="5.0" centerX="591.0" centerY="207.0"/>
+	<Circle styleClass="node-style" radius="5.0" centerX="702.0" centerY="266.0"/>
+</Pane>

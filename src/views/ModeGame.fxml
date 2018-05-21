@@ -1,44 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
 <BorderPane prefHeight="520.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModeGameController">
     <top>
+        <!--<fx:define>
+            <ToggleGroup fx:id="modeToggleGroup"/>
+            <ToggleGroup fx:id="startColorToggleGroup"/>
+        </fx:define>-->
         <MenuBar BorderPane.alignment="CENTER">
-            <menus>
-                <Menu mnemonicParsing="false" text="File">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#openFileAction" text="Open" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="switchModeMenuItem" mnemonicParsing="false" text="Switch mode" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#quitAction" text="Quit" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Undo" />
-                        <MenuItem mnemonicParsing="false" text="Redo" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Start" />
-                        <MenuItem mnemonicParsing="false" text="Reset" />
-                        <MenuItem mnemonicParsing="false" text="Paste" />
-                    </items>
-                </Menu>
-            <Menu mnemonicParsing="false" text="Mode">
-               <items>
-                  <RadioMenuItem mnemonicParsing="false" text="Human vs Human" />
-                  <RadioMenuItem mnemonicParsing="false" text="Human vs Bot" />
-               </items>
+            <Menu mnemonicParsing="false" text="File">
+                <MenuItem mnemonicParsing="false" onAction="#openFileAction" text="Open">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem fx:id="switchModeMenuItem" mnemonicParsing="false" text="Switch mode">
+                    <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem mnemonicParsing="false" onAction="#quitAction" text="Quit">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
             </Menu>
-            </menus>
+            <Menu mnemonicParsing="false" text="Edit">
+                <MenuItem fx:id="undoMenuItem" mnemonicParsing="false" onAction="#undoAction" text="Undo">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <MenuItem fx:id="redoMenuItem" mnemonicParsing="false" onAction="#redoAction" text="Redo">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem fx:id="startMenuItem" mnemonicParsing="false" onAction="#startAction" text="Start">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+                <MenuItem fx:id="restartMenuItem" mnemonicParsing="false" onAction="#restartAction" text="Restart">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="R" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Mode">
+                <items>
+                    <RadioMenuItem fx:id="hxHRadioMenuItem" mnemonicParsing="false" onAction="#setOpponentAction" selected="true" text="Human vs Human">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="modeToggleGroup" />
+                        </toggleGroup>
+                    </RadioMenuItem>
+                    <RadioMenuItem fx:id="hxBRadioMenuItem" mnemonicParsing="false" onAction="#setOpponentAction" text="Human vs Bot" toggleGroup="$modeToggleGroup" />
+                    <SeparatorMenuItem mnemonicParsing="false" />
+                    <RadioMenuItem fx:id="redRadioMenuItem" mnemonicParsing="false" onAction="#setStartColorAction" selected="true" text="RED">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="startColorToggleGroup" />
+                        </toggleGroup>
+                    </RadioMenuItem>
+                    <RadioMenuItem fx:id="blueRadioMenuItem" mnemonicParsing="false" onAction="#setStartColorAction" text="BLUE" toggleGroup="$startColorToggleGroup" />
+                </items>
+            </Menu>
         </MenuBar>
     </top>
     <left>
@@ -47,4 +88,14 @@
     <center>
         <Pane fx:id="drawPanel" />
     </center>
+   <bottom>
+      <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="960.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="notificationLabel" text="Notification area" />
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </HBox>
+   </bottom>
 </BorderPane>
